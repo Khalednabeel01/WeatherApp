@@ -141,16 +141,3 @@ curl http://weatherapp.local/cairo
 
 Khaled Nabil
 DevOps Engineer | Kubernetes Enthusiast
-
----
-
-## ⭐ Notes
-
-المشروع ده هدفه التعلم والتطبيق العملي لمفاهيم:
-
-* Microservices
-* Kubernetes Networking
-* Secrets Management
-* Ingress Routing
-
----

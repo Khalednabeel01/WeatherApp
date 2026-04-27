@@ -5,24 +5,47 @@ Microservices-based Weather App using Kubernetes, Docker, and Ingress with exter
 
 ## 📌 Overview
 
-WeatherApp هو مشروع Microservices مبني باستخدام Kubernetes، بيقدم:
+WeatherApp is a Microservices project built using Kubernetes, providing:
 
 * 🔐 Authentication Service
-* 🌤️ Weather Service (بيجيب بيانات الطقس من API خارجي)
+* 🌤️ Weather Service (fetches weather data from an external API)
 * 🗄️ MySQL Database
-* 🌐 Ingress Routing للوصول من خلال Domain
+* 🌐 Ingress Routing for access through Domain
 
-المشروع هدفه تطبيق مفاهيم **DevOps + Kubernetes + Microservices Architecture** بشكل عملي.
+The project aims to apply **DevOps + Kubernetes + Microservices Architecture** concepts practically.
+
+---
+
+## 📁 Project Structure
+
+```
+kubernetes-lab/
+├── auth/
+│   ├── README.md
+│   └── mysql/
+│       ├── deployment.yml
+│       ├── headless-service.yml
+│       ├── init-job.yml
+│       ├── service.yml
+│       └── statefulset.yml
+├── ui/
+│   ├── deployment.yml
+│   ├── ingress.yml
+│   └── service.yml
+└── weather/
+    ├── deployment.yml
+    └── service.yml
+```
 
 ---
 
 ## 🏗️ Architecture
 
-* **weatherapp-auth** → مسؤول عن تسجيل المستخدمين
-* **weatherapp-weather** → مسؤول عن جلب بيانات الطقس
-* **MySQL StatefulSet** → لتخزين البيانات
-* **Kubernetes Services** → للتواصل بين الخدمات
-* **Ingress (NGINX)** → لربط الدومين `weatherapp.local` بالخدمات
+* **weatherapp-auth** → Responsible for user registration
+* **weatherapp-weather** → Responsible for fetching weather data
+* **MySQL StatefulSet** → For data storage
+* **Kubernetes Services** → For communication between services
+* **Ingress (NGINX)** → To link the domain `weatherapp.local` to the services
 
 ---
 
@@ -39,7 +62,7 @@ WeatherApp هو مشروع Microservices مبني باستخدام Kubernetes، 
 
 ## ⚙️ Setup & Deployment
 
-### 1️⃣ Clone المشروع
+### 1️⃣ Clone the Project
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/weatherapp.git
@@ -56,7 +79,7 @@ kubectl apply -f .
 
 ---
 
-### 3️⃣ إنشاء Secrets
+### 3️⃣ Create Secrets
 
 ```bash
 kubectl create secret generic weather \
@@ -65,15 +88,15 @@ kubectl create secret generic weather \
 
 ---
 
-### 4️⃣ تشغيل Ingress
+### 4️⃣ Run Ingress
 
-تأكد إنك مشغل NGINX Ingress Controller
+Make sure you have NGINX Ingress Controller running
 
 ---
 
-### 5️⃣ تعديل hosts file
+### 5️⃣ Edit hosts file
 
-على جهازك:
+On your machine:
 
 ```
 172.24.155.21   weatherapp.local
@@ -83,7 +106,7 @@ kubectl create secret generic weather \
 
 ## 🌐 Usage
 
-### من المتصفح:
+### From the browser:
 
 ```
 http://weatherapp.local
@@ -107,33 +130,10 @@ curl http://weatherapp.local/cairo
 
 ## 🔐 Security
 
-* استخدام Kubernetes Secrets لإدارة API Keys
-* عدم تخزين أي بيانات حساسة داخل الكود
+* Use Kubernetes Secrets to manage API Keys
+* Do not store any sensitive data inside the code
 
 ---
-
-## 📂 Project Structure
-
-```
-.
-├── auth-service/
-├── weather-service/
-├── k8s/
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   ├── ingress.yaml
-│   └── statefulset.yaml
-└── README.md
-```
-
----
-
-## 💡 Future Improvements
-
-* CI/CD باستخدام GitHub Actions
-* Monitoring (Prometheus + Grafana)
-* استخدام Helm Charts
-* إضافة Redis caching
 
 ---
 
